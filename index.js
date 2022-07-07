@@ -1,4 +1,4 @@
-export const AmeiData = {
+const amei = {
 	// 时间格式化
 	date(format = 'Y-m-d H:i:s', timestamp = '') {
 		if (timestamp === '') {
@@ -112,3 +112,5 @@ export const AmeiData = {
 		}
 	}
 }
+
+module.exports = amei

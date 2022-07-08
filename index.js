@@ -2,7 +2,7 @@ const amei = {
 	// 时间格式化
 	date(format = 'Y-m-d H:i:s', timestamp = '') {
 		if (timestamp === '') {
-			timestamp = this.time()
+			timestamp = amei.time()
 		}
 		const date = new Date(timestamp * 1000)
 		let year = date.getFullYear()
@@ -11,13 +11,13 @@ const amei = {
 		let hour = date.getHours()
 		let minute = date.getMinutes()
 		let second = date.getSeconds()
-		let formatDate = this.trim(format) // 去除字符串两边空格
+		let formatDate = amei.trim(format) // 去除字符串两边空格
 		formatDate = formatDate.replace(/Y/, year) // 年
-		formatDate = formatDate.replace(/m/, this.paddingzero(month, 2)) // 月
-		formatDate = formatDate.replace(/d/, this.paddingzero(day, 2)) // 日
-		formatDate = formatDate.replace(/H/, this.paddingzero(hour, 2)) // 时
-		formatDate = formatDate.replace(/i/, this.paddingzero(minute, 2)) // 分
-		formatDate = formatDate.replace(/s/, this.paddingzero(second, 2)) // 秒
+		formatDate = formatDate.replace(/m/, amei.paddingzero(month, 2)) // 月
+		formatDate = formatDate.replace(/d/, amei.paddingzero(day, 2)) // 日
+		formatDate = formatDate.replace(/H/, amei.paddingzero(hour, 2)) // 时
+		formatDate = formatDate.replace(/i/, amei.paddingzero(minute, 2)) // 分
+		formatDate = formatDate.replace(/s/, amei.paddingzero(second, 2)) // 秒
 		return formatDate
 	},
 	// 获取当前时间戳
@@ -27,21 +27,21 @@ const amei = {
 	// 日期转时间戳
 	strtotime(time = '', now = '') {
 		if (time === '') {
-			return this.time()
+			return amei.time()
 		}
 
-		time = this.trim(time) // 去除字符串两边空格
+		time = amei.trim(time) // 去除字符串两边空格
 
 		// 获取当前时间戳
 		if (time.indexOf('now') != -1) {
-			return this.time()
+			return amei.time()
 		}
 
-		let hour = this.analysis(time, 'hour') // 时
-		let day = this.analysis(time, 'day') // 天
-		let week = this.analysis(time, 'week') // 周
-		let month = this.analysis(time, 'month') // 月
-		let year = this.analysis(time, 'year') // 年
+		let hour = amei.analysis(time, 'hour') // 时
+		let day = amei.analysis(time, 'day') // 天
+		let week = amei.analysis(time, 'week') // 周
+		let month = amei.analysis(time, 'month') // 月
+		let year = amei.analysis(time, 'year') // 年
 
 		if (hour === '' && day === '' && week === '' && month === '' && year === '') {
 			if (time.length === 10) {
@@ -51,7 +51,7 @@ const amei = {
 		}
 
 		if (now === '') { // 没有传值，默认当前时间戳
-			now = this.time()
+			now = amei.time()
 		}
 
 		// 时偏移
@@ -71,7 +71,7 @@ const amei = {
 
 		// 月或年偏移
 		if (month !== '' || year !== '') {
-			let date = this.date('Y-m-d H:i:s', now)
+			let date = amei.date('Y-m-d H:i:s', now)
 			let date_arr = date.split('-')
 			if (month !== '') { // 月偏移
 				if (parseInt(date_arr[1]) + parseInt(month) > 12) { // 大于12月，则向年进位
@@ -88,7 +88,7 @@ const amei = {
 				date_arr[0] = parseInt(date_arr[0]) + parseInt(year)
 			}
 			
-			now = this.strtotime(date_arr.join('-'))
+			now = amei.strtotime(date_arr.join('-'))
 		}
 
 		return now
@@ -105,7 +105,7 @@ const amei = {
 	analysis(str, word) {
 		let length = str.indexOf(word)
 		if (length != -1) {
-			let sub_str = this.trim(str.substring(0, length))
+			let sub_str = amei.trim(str.substring(0, length))
 			return sub_str.split(' ').pop()
 		} else {
 			return ''

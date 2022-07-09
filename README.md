@@ -12,7 +12,7 @@ npm i amei-date-format
 
 ### import
 
-import amei from 'amei-date-format'
+import AmeiData from 'amei-date-format'
 
 import {date, time, strtotime} from 'amei-date-format'
 
@@ -30,13 +30,11 @@ If 【timestamp】 is not transmitted, it is the current timestamp
 example:
 
 ```javascript
-console.log(amei.date()) // 2022-07-06 17:35:07
-console.log(amei.date('Y-m-d')) // 2022-07-06
-console.log(amei.date('Ymd')) // 20220706
-
+import AmeiData from 'amei-date-format'
+console.log(AmeiData.date()) // 2022-07-06 17:35:07
+console.log(AmeiData.date('Ymd')) // 20220706
+console.log(AmeiData.date('Y-m-d')) // 2022-07-06
 ```
-
-
 
 #### Get current timestamp
 
@@ -45,10 +43,9 @@ console.log(amei.date('Ymd')) // 20220706
 example:
 
 ```javascript
-console.log(amei.time()) // 1657100107
+import AmeiData from 'amei-date-format'
+console.log(AmeiData.time()) // 1657100107
 ```
-
-
 
 #### Date to timestamp
 ##### strtotime(time = '', now = '')
@@ -58,28 +55,23 @@ console.log(amei.time()) // 1657100107
 If 【now】 is not transmitted, it is the current timestamp
 
 ```javascript
-console.log(amei.strtotime()) // 1657100107
-console.log(amei.strtotime('now')) // 1657100107
-console.log(amei.strtotime('2022-02-18')) // 1645113600
-console.log(amei.strtotime('+1 day', amei.strtotime('2022-02-18'))) // 1645200000
-
+import AmeiData from 'amei-date-format'
+console.log(AmeiData.strtotime()) // 1657100107
+console.log(AmeiData.strtotime('2022-02-18')) // 1645113600
+console.log(AmeiData.strtotime('+1 day', AmeiData.strtotime('2022-02-18'))) // 1645200000
 ```
 
 
 
-##### Complex examples：
+### Complex examples：
 
 ```javascript
-// now+3hours+2days+1week
-console.log(amei.date('Y-m-d H:i:s', amei.strtotime('+3 hours +2 days +1 week'))) // 2022-07-15 20:35:07
-// now+2years
-console.log(amei.date('Y-m-d H:i:s', amei.strtotime('+2 years'))) // 2024-07-06 17:35:07
-
-// critical point start
+import {date, time, strtotime} from 'amei-date-format'
+console.log(date('Y-m-d H:i:s', strtotime('+2 years'))) // 2024-07-06 17:35:07
+console.log(date('Y-m-d H:i:s', strtotime('+3 hours +2 days +1 week'))) // 2022-07-15 20:35:07
+console.log(date('Y-m-d H:i:s', strtotime('-1 month', strtotime('2022-03-31')))) // 2022-03-03 00:00:00
 console.log(date('Y-m-d H:i:s', strtotime('+1 month', strtotime('2022-03-31')))) // 2022-05-01 00:00:00
 console.log(date('Y-m-d H:i:s', strtotime('+10 month', strtotime('2022-03-31')))) // 2023-01-31 00:00:00
-console.log(date('Y-m-d H:i:s', strtotime('-1 month', strtotime('2022-03-31')))) // 2022-03-03 00:00:00
-// critical point end
 ```
 
 
